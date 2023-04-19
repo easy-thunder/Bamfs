@@ -60,7 +60,7 @@ padding-left: 0;
 .trajectory{
   border: solid red;
   height: 0px;
-  width: 400px;
+  width: 200px;
   position: absolute;
   /* rotate: -4rad; */
   transform-origin: 0%;

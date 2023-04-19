@@ -73,7 +73,6 @@ function Console(){
             return () => clearInterval(shootingInterval);
           }
     },[firing])
-console.log(bullets)
     function commenceFire(){
         setFiring(()=>true)
     }
