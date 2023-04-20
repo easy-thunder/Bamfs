@@ -66,6 +66,10 @@ padding-left: 0;
   transform-origin: 0%;
 }
 
+.startButton{
+  position:absolute;
+  top: 510px;
+}
 .console{
   border: solid black;
   height: 500px;
@@ -78,4 +82,12 @@ padding-left: 0;
   border: solid green; 
   height: 20px;
   width: 15px;
+}
+
+
+.zombie{
+  border: solid red;
+  height: 20px;
+  width: 15px;
+  position: absolute;
 }

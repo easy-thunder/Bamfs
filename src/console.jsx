@@ -1,6 +1,7 @@
 import Character from "./Character"
 import { useState, useEffect } from "react"
 import Bullet from "./Bullet"
+import Zombie from "./Zombie"
 
 function Console(){
     const [characterX, setCharacterX]=useState(385)
@@ -12,8 +13,12 @@ function Console(){
     const [mouseX, setMouseX]=useState()
     const [mouseY, setMouseY]=useState()
     const [firing, setFiring]=useState(false)
-    const [bullets, setBullets]=useState(0)
-
+    const [bullets, setBullets]=useState([])
+    const [consoleBulletX, setConsoleBulletX]=useState(-100)
+    const [consoleBulletY, setConsoleBulletY]=useState(-100)
+    const [level, setLevel]=useState(0)
+    const deadZombies = []
+    const zombies = []
     function move(e){
         if(e.key === "w"){
             setUp(up=>!up)
@@ -27,8 +32,16 @@ function Console(){
         if (e.key === "d"){
             setRight(right => !right)
         }
-     
     }
+
+    function nextLevel(){
+        setLevel(level=>level+1)
+    }
+    for(let i=0; i<level**2;i++){
+        console.log(i)
+        {zombies.push(<Zombie deadZombies={deadZombies} characterX={characterX} characterY={characterY} consoleBulletX={consoleBulletX} consoleBulletY={consoleBulletY} key={i} />)}
+    }
+
 
     useEffect(()=>{
         function update(e) {
@@ -79,13 +92,15 @@ function Console(){
     function ceaseFire(){
         setFiring(()=>false)
     }
- 
+
     return(<div onMouseDown={commenceFire} onMouseUp={ceaseFire} tabIndex={0} onKeyDown={move} onKeyUp={removeKeyDown}  
 
     className="console">
 
         <Character mouseX={mouseX} mouseY={mouseY} firing={firing} characterX={characterX} characterY={characterY} />
-        {firing? <Bullet mouseX={mouseX} mouseY={mouseY} characterX={characterX} characterY={characterY} /> : null}
+        {zombies}
+        {firing? <Bullet mouseX={mouseX} mouseY={mouseY} characterX={characterX} characterY={characterY} setConsoleBulletX={setConsoleBulletX} setConsoleBulletY={setConsoleBulletY} /> : null}
+        <button className="startButton" onClick={nextLevel}>next Level</button>
     </div>)
 }
 
